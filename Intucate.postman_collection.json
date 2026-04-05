@@ -1,0 +1,77 @@
+{
+  "info": {
+    "_postman_id": "1419e742-2f3e-46b9-a49e-8d38b8745734",
+    "name": "Intucate",
+    "description": "This collection contains API endpoints for **Intucate**, an AI-powered prompt service designed to assist users with queries related to professional examinations — particularly CA (Chartered Accountancy) exams.\n\nThe collection exposes two endpoints, both running locally on `http://127.0.0.1:5001`:\n\n- **singleprompt** (`POST /api/prompt`) — Accepts a single user query via the `userInput` field and returns an AI-generated response. Ideal for interactive, one-at-a-time question answering.\n    \n- **batchprompt** (`POST /api/batch_prompt`) — Accepts multiple user queries at once via the `userInputs` array, enabling bulk processing of questions in a single request. Useful for testing or processing a set of related queries efficiently.\n    \n\nUse this collection to develop, test, and validate the Intucate prompt API during local development.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "37687945"
+  },
+  "item": [
+    {
+      "name": "singleprompt",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"userInput\": \"How much should I score in each subject to pass CA final?\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5001/api/prompt",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "prompt"
+          ]
+        },
+        "description": "Sends a single user query to the Intucate AI prompt engine and returns a generated response.\n\n**Endpoint:** `POST http://127.0.0.1:5001/api/prompt`\n\n**Request Body (JSON):**\n| Field | Type | Required | Description |\n|---|---|---|---|\n| `userInput` | string | Yes | The question or query submitted by the user. |\n\n**Example Request:**\n```json\n{\n  \"userInput\": \"How much should I score in each subject to pass CA final?\"\n}\n```\n\nUse this endpoint for interactive, one-at-a-time question answering during development or testing."
+      },
+      "response": []
+    },
+    {
+      "name": "batchprompt",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"userInputs\": [\r\n    \"How much should I score in each subject to pass CA final?\",\r\n    \"What are the best books for CA Intermediate?\",\r\n    \"Tips to manage time during CA exams\"\r\n  ]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5001/api/batch_prompt",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "batch_prompt"
+          ]
+        },
+        "description": "Sends multiple user queries to the Intucate AI prompt engine in a single request and returns responses for each.\n\n**Endpoint:** `POST http://127.0.0.1:5001/api/batch_prompt`\n\n**Request Body (JSON):**  \n| Field | Type | Required | Description |  \n|---|---|---|---|  \n| `userInputs` | array of strings | Yes | A list of questions or queries to be processed in bulk. |\n\n**Example Request:**\n\n``` json\n{\n  \"userInputs\": [\n    \"How much should I score in each subject to pass CA final?\",\n    \"What are the best books for CA Intermediate?\",\n    \"Tips to manage time during CA exams\"\n  ]\n}\n\n ```\n\nUse this endpoint to process multiple queries at once — ideal for batch testing, seeding data, or handling grouped user inputs efficiently."
+      },
+      "response": []
+    }
+  ]
+}
