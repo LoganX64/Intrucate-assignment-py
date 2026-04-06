@@ -22,9 +22,13 @@ def single_prompt():
 
         save_to_history(userInput, aiResponse, is_batch=False)
 
-        return jsonify({"response": aiResponse})
-    
+        return jsonify({
+            "userInput": userInput,
+            "response": aiResponse
+        })
+
     except Exception as e:
+        print(f"Error in single_prompt: {e}")
         return jsonify({"error": str(e)}), 500
 
 # Batch Prompt Endpoint
@@ -40,16 +44,27 @@ def batch_prompt():
     try:
         async def process_batch():
             tasks = [get_ai_response(userInput) for userInput in inputs]
-            return await asyncio.gather(*tasks)
+            return await asyncio.gather(*tasks,return_exceptions=True)
 
         responses = asyncio.run(process_batch())
 
-        for userInputs, aiResponse in zip(inputs, responses):
-            save_to_history(userInputs, aiResponse, is_batch=True)
+        result = []
+        for user_input, resp in zip(inputs, responses):
+            if isinstance(resp, Exception):
+                answer = f"Error: {str(resp)}"
+            else:
+                answer = resp
 
-        return jsonify({"responses": responses})
+            result.append({
+                "userInput": user_input,
+                "response": answer
+            })
+
+            save_to_history(user_input, answer, is_batch=True)
+        return jsonify({"responses": result})
     
     except Exception as e:
+        print(f"Error in batch_prompt: {e}")
         return jsonify({"error": str(e)}), 500
 
 
