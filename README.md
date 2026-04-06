@@ -180,7 +180,7 @@ Server running on http://127.0.0.1:5001
 
 ### Video Walkthrough
 
-[Add your Postman demo video link here - e.g., YouTube, Vimeo, or other video hosting platform]
+https://github.com/user-attachments/assets/4e02a2b8-3a09-4192-9f81-0441480f11fe
 
 ### What the Demo Shows
 
