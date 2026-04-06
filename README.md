@@ -180,15 +180,13 @@ Server running on http://127.0.0.1:5001
 
 ### Video Walkthrough
 
-[Add your video demo link here - e.g., YouTube, Vimeo, or other video hosting platform]
+[Add your Postman demo video link here - e.g., YouTube, Vimeo, or other video hosting platform]
 
 ### What the Demo Shows
 
-- Setting up and running the Flask application
-- Making single query requests via the API
-- Processing batch queries
-- Viewing request history in MongoDB
-- API response handling
+- Using Postman to send single query requests to `/api/prompt`
+- Using Postman to send batch queries to `/api/batch_prompt`
+- Viewing JSON responses in Postman
 
 ---
 
